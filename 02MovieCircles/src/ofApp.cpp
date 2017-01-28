@@ -17,14 +17,6 @@ void ofApp::setup(){
 void ofApp::update(){
     location1 += velocity1;
     location2 += velocity2;
-}
-
-//--------------------------------------------------------------
-void ofApp::draw(){
-    //計算した位置に円を描画
-    ofSetColor(31, 12, 255); //円の色
-    ofDrawCircle(location1, 40); //半径40の円を描画
-    ofDrawCircle(location2, 40); //半径40の円を描画
     
     //画面の端でバウンドするように
     if (location1.x < 0 || location1.x > ofGetWidth()) { //画面の左右ではみ出したら
@@ -33,13 +25,21 @@ void ofApp::draw(){
     if (location1.y < 0 || location1.y > ofGetHeight()) { //画面の左右ではみ出したら
         velocity1.y *= -1; //横向きの速度を反転(バウンド)
     }
-
+    
     if (location2.x < 0 || location2.x > ofGetWidth()) { //画面の左右ではみ出したら
         velocity2.x *= -1; //横向きの速度を反転(バウンド)
     }
     if (location2.y < 0 || location2.y > ofGetHeight()) { //画面の左右ではみ出したら
         velocity2.y *= -1; //横向きの速度を反転(バウンド)
     }
+}
+
+//--------------------------------------------------------------
+void ofApp::draw(){
+    //計算した位置に円を描画
+    ofSetColor(31, 12, 255); //円の色
+    ofDrawCircle(location1, 40); //半径40の円を描画
+    ofDrawCircle(location2, 40); //半径40の円を描画
 }
 
 //--------------------------------------------------------------

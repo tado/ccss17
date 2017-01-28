@@ -18,7 +18,16 @@ void ofApp::setup(){
 void ofApp::update(){
     //NUM回くりかえし
     for (int i = 0; i < NUM; i++) {
+        //位置を更新
         location[i] += velocity[i];
+        
+        //画面の端でバウンドするように
+        if (location[i].x < 0 || location[i].x > ofGetWidth()) { //画面の左右ではみ出したら
+            velocity[i].x *= -1; //横向きの速度を反転(バウンド)
+        }
+        if (location[i].y < 0 || location[i].y > ofGetHeight()) { //画面の左右ではみ出したら
+            velocity[i].y *= -1; //横向きの速度を反転(バウンド)
+        }
     }
 }
 
@@ -30,14 +39,6 @@ void ofApp::draw(){
         ofSetColor(31, 12, 255); //円の色
         ofDrawCircle(location[i], 20); //半径40の円を描画
         ofDrawCircle(location[i], 20); //半径40の円を描画
-        
-        //画面の端でバウンドするように
-        if (location[i].x < 0 || location[i].x > ofGetWidth()) { //画面の左右ではみ出したら
-            velocity[i].x *= -1; //横向きの速度を反転(バウンド)
-        }
-        if (location[i].y < 0 || location[i].y > ofGetHeight()) { //画面の左右ではみ出したら
-            velocity[i].y *= -1; //横向きの速度を反転(バウンド)
-        }
     }
 }
 

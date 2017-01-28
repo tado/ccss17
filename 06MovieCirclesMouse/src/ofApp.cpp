@@ -15,6 +15,14 @@ void ofApp::update(){
     //NUM回くりかえし
     for (int i = 0; i < location.size(); i++) {
         location[i] += velocity[i];
+        
+        //画面の端でバウンドするように
+        if (location[i].x < 0 || location[i].x > ofGetWidth()) {
+            velocity[i].x *= -1; //横向きの速度を反転(バウンド)
+        }
+        if (location[i].y < 0 || location[i].y > ofGetHeight()) {
+            velocity[i].y *= -1; //横向きの速度を反転(バウンド)
+        }
     }
 }
 
@@ -26,14 +34,6 @@ void ofApp::draw(){
         ofSetColor(15, 127, 255); //円の色
         ofDrawCircle(location[i], 5); //半径5の円を描画
         ofDrawCircle(location[i], 5); //半径5の円を描画
-        
-        //画面の端でバウンドするように
-        if (location[i].x < 0 || location[i].x > ofGetWidth()) {
-            velocity[i].x *= -1; //横向きの速度を反転(バウンド)
-        }
-        if (location[i].y < 0 || location[i].y > ofGetHeight()) {
-            velocity[i].y *= -1; //横向きの速度を反転(バウンド)
-        }
     }
     
     //現在の物体の数を表示
